@@ -1,10 +1,13 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const methodOverride = require('method-override');
+const passport = require('passport');
 const mongoose = require('mongoose');
 
 const app = express();
+mongoose.Promise = global.Promise;
 
 global.__basedir = __dirname;
 app.set('view engine', 'ejs');
@@ -12,6 +15,15 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
+
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connect('mongodb://localhost/shoppingapp', () => {
     
@@ -25,6 +37,8 @@ mongoose.connect('mongodb://localhost/shoppingapp', () => {
 ;
 require('./models/Register');
 const RegisterModel = mongoose.model('register');
+
+require('./config/passport')(passport);
 
 const loginRoute = require('./routes/users/login');
 const registerRoute = require('./routes/users/register');
