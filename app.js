@@ -43,51 +43,18 @@ require('./config/passport')(passport);
 const loginRoute = require('./routes/users/login');
 const registerRoute = require('./routes/users/register');
 const viewUserRoute = require('./routes/admin/users');
+const editRoute = require('./routes/admin/edit');
 
 app.use('/users', loginRoute);
 app.use('/users', registerRoute);
 app.use('/admin', viewUserRoute);
+app.use('/admin', editRoute);
 
 app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.get('/admin/edit/:id', (req, res) => {
-    RegisterModel.findById({
-        _id: req.params.id
-    })
-    .then((data) => {
-        console.log(data);
-        res.render('admin/editUser', {
-            user: data
-        });
-    })
-    .catch((err) => {
-        console.log(err);
-    }); 
-});
-app.put('/admin/edit/:id', (req, res) => {
-    RegisterModel.findById({
-        _id: req.params.id
-    })
-    .then((user) => {
-        user.name = req.body.name,
-        user.email = req.body.email,
-        user.phone = req.body.phone
 
-        user.save()
-        .then(() => {
-            console.log('Updated successfully');
-            res.redirect('/admin/viewUsers');
-        })
-        .catch((err) => {
-            console.log('error updating file');
-        });
-    })
-    .catch((err) => {
-        console.log('cannont find user');
-    });
-});
 
 app.delete('/admin/delete/:id', (req, res) => {
     RegisterModel.findByIdAndDelete({
