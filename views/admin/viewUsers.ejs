@@ -1,0 +1,13 @@
+<%- include('../includes/head.ejs'); %>
+    <title>View Users</title>
+</head>
+<body>
+    <% for(let user of data){ %>
+        <div>
+            <%=user.name %><br>
+            <%=user.email %><br>
+            <%=user.phone %><br>
+            <br>
+        </div>
+    <% } %>
+<%- include('../includes/end.ejs'); %>
