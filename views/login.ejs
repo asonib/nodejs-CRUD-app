@@ -1,0 +1,11 @@
+<%- include('./includes/head.ejs'); %>
+    <title>Welcome | Login</title>
+</head>
+<body>
+    Login To Your account
+    <form action="/login" method="POST">
+        <input type="text" name="email">
+        <input type="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+<%- include('./includes/end.ejs'); %>
