@@ -1,0 +1,13 @@
+<%- include('../includes/head.ejs'); %>    
+<title>Edit User</title>
+</head>
+<body>
+
+    <form action="/admin/edit/<%=user._id %>?_method=PUT" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        Name : <input type="text" name="name" value="<%=user.name %>"><br>
+        Phone No. : <input type="number" name="phone" value="<%=user.phone %>"><br>
+        Email : <input type="text" name="email" value="<%=user.email %>"><br>
+        <button type="submit">Update</button>
+    </form>
+<%- include('../includes/end.ejs'); %>

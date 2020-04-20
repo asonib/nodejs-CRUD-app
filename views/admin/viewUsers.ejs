@@ -2,12 +2,18 @@
     <title>View Users</title>
 </head>
 <body>
-    <% for(let user of data){ %>
-        <div>
-            <%=user.name %><br>
-            <%=user.email %><br>
-            <%=user.phone %><br>
-            <br>
-        </div>
-    <% } %>
+        <% for(let user of data){ %>
+            <div>
+                <%=user._id %><br>
+                <%=user.name %><br>
+                <%=user.email %><br>
+                <%=user.phone %><br>
+                <a href="/admin/edit/<%=user._id %>" method="POST">Edit</a>
+                <form action="/admin/delete/<%=user._id %>?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <button type="submit">Delete</button>
+                </form>
+                <br>
+            </div>
+        <% } %>
 <%- include('../includes/end.ejs'); %>
