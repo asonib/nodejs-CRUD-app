@@ -2,7 +2,11 @@
     <title>Welcome | Home</title>
 </head>
 <body>
-    Main Page
-    <a href="/users/login">Login</a>
-    <a href="/users/register">Register</a>
+    <%- include('./includes/navbar.ejs'); %>
+    <div class="jumbotron text-center col-md-10 mx-auto">
+        <h1 class="display-3">Welcome</h1>
+        <p class="lead">Shop To Live.</p><br>
+        <a href="/users/login" class="btn btn-dark btn-lg">Login</a>
+        <a href="/users/register" class="btn btn-primary btn-lg">Register</a>
+      </div>
 <%- include('./includes/end.ejs'); %>

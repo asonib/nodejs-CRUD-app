@@ -54,6 +54,11 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
+app.get('/users/dashboard', (req, res) => {
+    
+    res.render('user/dashboard');
+})
+
 
 
 app.delete('/admin/delete/:id', (req, res) => {
