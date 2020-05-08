@@ -24,6 +24,8 @@ mongoose.connect('mongodb://localhost/mern', {
     console.log('Problem connecting to he database');
 });
 
+const auth = require('./config/auth');
+
 const config = require('./config/config');
 console.log("Encryptor : ", config.config.jwtSecret);
 app.get('/', (req, res) => {
@@ -47,7 +49,7 @@ app.get('/', (req, res) => {
         }
     );
 });
-app.get('/auth/dashboard', (req, res) => {
+app.get('/auth/dashboard', auth, (req, res) => {
     
     // var decoded = jwt.verify(data, 'asb75E');
     // console.log(decoded.user);
