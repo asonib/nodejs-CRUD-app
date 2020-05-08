@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
         }
     }
     jwt.sign({
-        data: payload
+        payload
     }, config.config.jwtSecret,
         {
             expiresIn: 60 * 60
@@ -50,9 +50,7 @@ app.get('/', (req, res) => {
     );
 });
 app.get('/auth/dashboard', auth, (req, res) => {
-    
-    // var decoded = jwt.verify(data, 'asb75E');
-    // console.log(decoded.user);
+    res.send(req.user);
 });
 
 const port = 3000 || process.env.PORT;
